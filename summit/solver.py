@@ -144,7 +144,7 @@ if __name__ == '__main__':
     # main()
     # exit()
 
-    num = 4
+    num = 64
 
     threads = [threading.Thread(target=main) for _ in range(num)]
 

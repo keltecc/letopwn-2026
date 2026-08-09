@@ -61,7 +61,7 @@ def attack(io):
         print('check failed')
         return False
 
-    io.sendline(b'id')
+    io.sendline(b'cat flag.txt')
     print(io.recvline())
 
     return True
