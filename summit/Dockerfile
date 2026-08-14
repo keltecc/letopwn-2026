@@ -7,7 +7,7 @@ COPY flag.txt server.py run /app/
 FROM pwn.red/jail
 COPY --from=builder / /srv
 
-ENV JAIL_TIME=120
+ENV JAIL_TIME=600
 ENV JAIL_PIDS=16
 ENV JAIL_MEM=32M
 ENV JAIL_CPU=1000
